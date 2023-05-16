@@ -13,6 +13,7 @@ export default {
       },
       boxShadow: {
         main: '0px 4px 0px #000000;',
+        hover: '0px 8px 0px #000000;',
       },
     },
   },

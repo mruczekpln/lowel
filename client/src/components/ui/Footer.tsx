@@ -1,15 +1,52 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
 import Input from './Input'
+
+interface FooterElementProps extends React.ComponentProps<'p'> {
+  content: string
+  linkTo: string
+  type?: 'large' | 'small'
+}
+
+const FooterElement = ({ content, linkTo, type = 'large' }: FooterElementProps) => {
+  // const className = type === 'large' ? 'font-medium' : 'text-lg font-normal'
+
+  return type === 'large' ? (
+    <Link
+      to={linkTo}
+      className='font-medium hover:left-4 left-0 relative duration-200 delay-200 transition-[left]'
+    >
+      {content}
+    </Link>
+  ) : (
+    <a
+      href={linkTo}
+      className='text-lg font-normal duration-100 delay-100 transition-[left] left-0 hover:left-2 relative'
+    >
+      {content}
+    </a>
+  )
+  // return (
+  //   <a href={linkTo} className={className}>
+  //     {content}
+  //   </a>
+  // )
+}
 
 const Footer = () => {
   return (
     <section className='flex w-full h-[500px] border-t-2 border-black'>
       <div className='w-1/2 h-full border-r-2 border-black pl-16 relative'>
         <div className='flex flex-col gap-4 text-3xl font-medium pt-16'>
-          <p>about</p>
-          <p>track your order</p>
-          <p>home page</p>
-          <p className='text-lg font-normal'>hero</p>
-          <p className='text-lg font-normal'>'23 spring exclusives</p>
+          <FooterElement linkTo='/about' content='about'></FooterElement>
+          <FooterElement linkTo='/tracking' content='track your order'></FooterElement>
+          <FooterElement linkTo='/' content='home'></FooterElement>
+          <FooterElement linkTo='#hero' content='hero' type='small'></FooterElement>
+          <FooterElement
+            linkTo='#exclusives'
+            content="'23 spring exclusives"
+            type='small'
+          ></FooterElement>
         </div>
         <h1 className='absolute bottom-8 font-title text-[64px] leading-none'>LOWEL</h1>
       </div>
