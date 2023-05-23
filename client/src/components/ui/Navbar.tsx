@@ -1,3 +1,5 @@
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion, useAnimation } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
@@ -57,16 +59,17 @@ interface NavbarProps extends React.ComponentProps<'div'> {
 
 const Navbar = ({ active }: NavbarProps) => {
   return (
-    <div className='w-full min-h-[128px] border-b-2 border-black  pl-8 justify-between flex items-center'>
+    <div className='w-full min-h-[128px] h-[128px] border-b-2 border-black  pl-8 justify-between flex items-center'>
       <h1 className='font-title w-min text-[64px] leading-none'>LOWEL</h1>
-      <div className='w-max h-full flex items-center'>
+      <div className='w-max h-full flex items-center border-b-1 border-black'>
         <div className='h-full w-max flex items-center justify-between gap-16 pr-8'>
           <NavbarElement content='home' active={active} to='/'></NavbarElement>
           <NavbarElement content='about' active={active} to='/about'></NavbarElement>
           <NavbarElement content='products' active={active} to='/products'></NavbarElement>
-          <NavbarElement content='track your order' active={active} to='/tracking'></NavbarElement>
         </div>
-        <div className='h-32 w-32 bg-secondary border-l-2 border-b-[1px] border-black'></div>
+        <div className='max-h-32 h-full w-32 bg-secondary border-l-2 border-black flex items-center justify-center'>
+          <FontAwesomeIcon icon={faCartShopping} size='3x' />
+        </div>
       </div>
     </div>
   )

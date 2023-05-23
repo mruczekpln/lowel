@@ -1,56 +1,27 @@
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import Navbar from '../../components/ui/Navbar'
 import Footer from '../../components/ui/Footer'
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
-import { MouseEvent } from 'react'
-
-interface HomePageButtonProps extends React.ComponentProps<'button'> {
-  content: string
-}
-
-const HomePageButton = ({ content }: HomePageButtonProps) => {
-  const xPosition = useMotionValue(0)
-  const yPosition = useMotionValue(0)
-
-  const mouseMoveHandler = (e: MouseEvent) => {
-    const { clientX, clientY } = e
-    const { left, top } = e.currentTarget.getBoundingClientRect()
-
-    xPosition.set(clientX - left)
-    yPosition.set(clientY - top)
-  }
-
-  return (
-    <motion.button
-      className='font-title bg-white w-60 py-8 text-4xl rounded-2xl border-2 border-accent shadow-main duration-200 transition-shadow relative overflow-hidden group'
-      transition={{ duration: 0.1 }}
-      onMouseMove={mouseMoveHandler}
-      whileTap={{
-        y: 2,
-        boxShadow: '0px 1px 0px #000000',
-      }}
-    >
-      <motion.div
-        className='absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 duration-300'
-        style={{
-          background: useMotionTemplate`radial-gradient(200px circle at ${xPosition}px ${yPosition}px, #1E1E1E, transparent)`,
-        }}
-      ></motion.div>
-      {content}
-    </motion.button>
-  )
-}
+import Navbar from '../../components/ui/Navbar'
+import ShopNowButton from './components/ShopNowButton'
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
+  const navigate = useNavigate()
+  const navigateTo = async (to: string) => {
+    await new Promise((resolve) => setTimeout(() => resolve(true), 500))
+
+    navigate(to)
+  }
+
   return (
     <div className='h-auto font-main overflow-x-hidden'>
       <main className='flex flex-col h-screen w-full'>
         <Navbar active='home'></Navbar>
-        <section className='bg-secondary grid h-full place-items-center'>
+        <section className='bg-secondary grid h-full place-items-center z-0'>
           <div className='flex justify-between gap-[100px] h-[550px] w-[1100px]'>
             <div className='w-1/2 flex flex-col justify-between'>
               <h1 className='text-[90px] leading-none font-bold font-main text-accent'>
-                New <br /> Spring '23 Exclusives
+                New <br /> Spring .23 Exclusives
               </h1>
               <p className='w-4/5 text-justify text-[16px] leading-5'>
                 Make a statement with our unique and exclusive apparel collection at Lowel. Find
@@ -59,20 +30,24 @@ const HomePage = () => {
                 discover your new favorite outfit.
               </p>
               <div className='flex gap-8'>
-                <HomePageButton content='SHOP NOW'></HomePageButton>
+                <ShopNowButton onClick={() => navigateTo('/products')}></ShopNowButton>
                 <motion.a
-                  className='font-title text-4xl py-8 pl-10'
+                  className='font-title text-4xl py-8 pl-10 cursor-pointer'
                   transition={{ duration: 0.1, ease: 'easeIn' }}
                   whileHover={{
                     y: -4,
                   }}
+                  onClick={() => navigateTo('/about')}
                 >
-                  <Link to='#'>DISCOVER US</Link>
+                  DISCOVER US
                 </motion.a>
               </div>
             </div>
             <div className='w-2/5 h-full border-2 rounded-2xl bg-white border-black shadow-main'></div>
           </div>
+
+          <div className='absolute left-[50%] translate-x-[-50%] bg-white w-[600px] h-[600px] blur-xl rounded-full -z-10'></div>
+          <div className='absolute left-[25%] translate-x[-50%] translate-y-[20%] bg-white w-[400px] h-[400px]  rounded-full -z-10'></div>
         </section>
       </main>
       <Footer></Footer>

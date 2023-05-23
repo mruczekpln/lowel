@@ -14,14 +14,14 @@ const FooterElement = ({ content, linkTo, type = 'large' }: FooterElementProps) 
   return type === 'large' ? (
     <Link
       to={linkTo}
-      className='font-medium hover:left-4 left-0 relative duration-200 delay-200 transition-[left]'
+      className='font-medium hover:left-4 left-0 relative duration-200 delay-100 transition-[left]'
     >
       {content}
     </Link>
   ) : (
     <a
       href={linkTo}
-      className='text-lg font-normal duration-100 delay-100 transition-[left] left-0 hover:left-2 relative'
+      className='text-lg font-normal duration-100 delay-50 transition-[left] left-0 hover:left-2 relative'
     >
       {content}
     </a>
@@ -33,9 +33,15 @@ const FooterElement = ({ content, linkTo, type = 'large' }: FooterElementProps) 
   // )
 }
 
-const Footer = () => {
+interface FooterProps extends React.ComponentProps<'footer'> {
+  type?: 'grey' | 'white'
+}
+
+const Footer = ({ type = 'white' }: FooterProps) => {
+  const backgroundCSS = type === 'white' ? 'bg-white' : 'bg-secondary'
+
   return (
-    <section className='flex w-full h-[500px] border-t-2 border-black'>
+    <section className={`flex w-full h-[500px] border-t-2 border-black ${backgroundCSS}`}>
       <div className='w-1/2 h-full border-r-2 border-black pl-16 relative'>
         <div className='flex flex-col gap-4 text-3xl font-medium pt-16'>
           <FooterElement linkTo='/about' content='about'></FooterElement>
