@@ -1,19 +1,11 @@
 import { useMotionValue, motion, useMotionTemplate } from 'framer-motion'
 import { MouseEvent } from 'react'
+import useBackground from '../../../hooks/useBackground'
 
 type ShopNowButtonProps = React.ComponentProps<'button'>
 
 const ShopNowButton = ({ onClick }: ShopNowButtonProps) => {
-  const xPosition = useMotionValue(0)
-  const yPosition = useMotionValue(0)
-
-  const mouseMoveHandler = (e: MouseEvent) => {
-    const { clientX, clientY } = e
-    const { left, top } = e.currentTarget.getBoundingClientRect()
-
-    xPosition.set(clientX - left)
-    yPosition.set(clientY - top)
-  }
+  const [mouseMoveHandler, xPosition, yPosition] = useBackground()
 
   return (
     <motion.button
