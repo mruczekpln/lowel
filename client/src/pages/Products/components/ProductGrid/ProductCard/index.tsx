@@ -1,3 +1,5 @@
+import { AnimatePresence, motion, stagger, useAnimate } from 'framer-motion'
+import { useEffect } from 'react'
 import ProductCardActions from './Actions'
 import ProductCardInfo from './Info'
 
@@ -10,18 +12,23 @@ interface ProductCardProps extends React.ComponentProps<'div'> {
 
 const ProductCard = (props: ProductCardProps) => {
   return (
-    <div className='w-full h-[700px] flex flex-col gap-8 font-main'>
-      <div className='w-full grid place-items-center h-[400px] bg-secondary group'>
-        <div
-          className='p-4 bg-white text-xl text-accent rounded-xl opacity-0 group-hover:opacity-100 duration-200 cursor-pointer'
-          onClick={(e) => alert(e.target)}
-        >
-          see more
+    <AnimatePresence>
+      <motion.main
+        initial={{ opacity: 0 }}
+        className='min-w-[400px] w-full min-h-[650px] flex flex-col gap-8 font-main'
+      >
+        <div className='w-full h-[400px] bg-secondary group relative'>
+          <div
+            className='text-l text-accent rounded-xl opacity-0 group-hover:opacity-100 duration-200 cursor-pointer absolute left-3 bottom-2'
+            onClick={(e) => alert(e.target)}
+          >
+            {props.description}
+          </div>
         </div>
-      </div>
-      <ProductCardInfo {...props} />
-      <ProductCardActions />
-    </div>
+        <ProductCardInfo {...props} />
+        <ProductCardActions />
+      </motion.main>
+    </AnimatePresence>
   )
 }
 

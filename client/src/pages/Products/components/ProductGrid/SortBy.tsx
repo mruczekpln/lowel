@@ -1,31 +1,91 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { AnimatePresence, motion, stagger, useAnimate } from 'framer-motion'
+import React from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { SortType } from '.'
 
-const sortingChoices = ['featured', 'price asc', 'price desc', 'name'] as const
+type Active = keyof typeof SortType
 
-type Active = (typeof sortingChoices)[number]
+interface SortByProps extends React.ComponentProps<'div'> {
+  onSort: (type: SortType) => void
+}
 
-const SortBy = () => {
-  const [active, setActive] = useState<Active>('featured')
+const SortBy = ({ onSort }: SortByProps) => {
+  const [active, setActive] = useState<Active>('FEATURED')
+
+  const [scope, animate] = useAnimate()
+
+  useEffect(() => {
+    animate('p', { opacity: 1 }, { duration: 0.5, delay: stagger(0.5, { startDelay: 0.3 }) })
+  }, [])
+
+  useEffect(() => {
+    onSort(SortType[active])
+  }, [active])
 
   return (
-    <div className='flex gap-4 text-2xl col-span-3 w-full relative'>
-      <p className=''>sort by:</p>
-      <div className='flex gap-8 font-bold'>
-        {sortingChoices.map((item, index) => (
-          <p className='relative cursor-pointer' key={index} onClick={() => setActive(item)}>
-            {item}
-            {active === item && (
-              <motion.div
+    <AnimatePresence>
+      <motion.div className='flex gap-4 text-2xl col-span-full relative'>
+        <h2 className=''>sort by:</h2>
+        <div className='flex gap-8 font-bold' ref={scope}>
+          <motion.p
+            className='relative cursor-pointer'
+            onClick={() => setActive('FEATURED')}
+            initial={{ opacity: 0 }}
+          >
+            FEATURED
+            {active === 'FEATURED' && (
+              <motion.span
                 layoutId='underline'
                 className='absolute inset-0 border-b-2 border-black'
-              ></motion.div>
+              ></motion.span>
             )}
-          </p>
-        ))}
-      </div>
-    </div>
+          </motion.p>
+
+          <motion.p
+            className='relative cursor-pointer'
+            onClick={() => setActive('PRICE_ASC')}
+            initial={{ opacity: 0 }}
+          >
+            PRICE ASC
+            {active === 'PRICE_ASC' && (
+              <motion.span
+                layoutId='underline'
+                className='absolute inset-0 border-b-2 border-black'
+              ></motion.span>
+            )}
+          </motion.p>
+
+          <motion.p
+            className='relative cursor-pointer'
+            onClick={() => setActive('PRICE_DESC')}
+            initial={{ opacity: 0 }}
+          >
+            PRICE DESC
+            {active === 'PRICE_DESC' && (
+              <motion.span
+                layoutId='underline'
+                className='absolute inset-0 border-b-2 border-black'
+              ></motion.span>
+            )}
+          </motion.p>
+
+          <motion.p
+            className='relative cursor-pointer'
+            onClick={() => setActive('NAME')}
+            initial={{ opacity: 0 }}
+          >
+            NAME
+            {active === 'NAME' && (
+              <motion.span
+                layoutId='underline'
+                className='absolute inset-0 border-b-2 border-black'
+              ></motion.span>
+            )}
+          </motion.p>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
-export default SortBy
+export default React.memo(SortBy)

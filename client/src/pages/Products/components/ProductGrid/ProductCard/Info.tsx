@@ -7,14 +7,9 @@ interface ProductCardInfoProps extends React.ComponentProps<'div'> {
 
 const ProductCardInfo = ({ title, description, price, discountedPrice }: ProductCardInfoProps) => {
   return (
-    <div className='flex items-center gap-4'>
-      <div className='w-full flex flex-col gap-4'>
-        <h1 className='font-bold font-title text-4xl'>{title}</h1>
-        <p className='text-[15px]'>
-          {description}... <b>Read More</b>
-        </p>
-      </div>
-      <div className='flex flex-col items-end '>
+    <div className='grow flex items-center gap-6'>
+      <h1 className='font-black font-main text-4xl w-full'>{title}</h1>
+      <div className='flex flex-col items-end'>
         {discountedPrice ? (
           <>
             <h2 className='italic font-semibold text-3xl'>{discountedPrice}$</h2>

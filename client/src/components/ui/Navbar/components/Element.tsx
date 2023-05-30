@@ -28,16 +28,16 @@ const NavbarElement = ({ content, to, active }: NavbarElementProps) => {
   const isActive = active === content
 
   return isActive ? (
-    <a href='#' className='font-main text-[40px] font-bold'>
+    <a href='#' className='font-main  text-[40px] font-bold'>
       {content}
     </a>
   ) : (
     <Link to={to}>
-      <motion.a
+      <motion.span
         onHoverStart={() => isHovered.start('hover')}
         onHoverEnd={() => isHovered.start('idle')}
         onTapStart={() => isHovered.start('tap')}
-        className='font-main text-[40px] relative cursor-pointer flex flex-col items-center'
+        className='font-main text-[40px]  relative cursor-pointer flex flex-col items-center'
       >
         {content}
         <motion.hr
@@ -46,7 +46,7 @@ const NavbarElement = ({ content, to, active }: NavbarElementProps) => {
           variants={hrVariants}
           animate={isHovered}
         />
-      </motion.a>
+      </motion.span>
     </Link>
   )
 }
