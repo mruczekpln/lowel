@@ -1,9 +1,7 @@
-import Navbar from '../../components/ui/Navbar'
-import Footer from '../../components/ui/Footer'
-
 import ProductGrid from './components/ProductGrid'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import PageWrapper from '../../components/layout/PageWrapper'
 
 export interface Product {
   id: number
@@ -11,10 +9,6 @@ export interface Product {
   desc: string
   price: number
   discountedPrice?: number
-}
-interface ProductsState {
-  data: Product[]
-  isLoading: boolean
 }
 
 const fetchProducts = async () => {
@@ -25,27 +19,23 @@ const fetchProducts = async () => {
 }
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState<ProductsState>({ data: [], isLoading: true })
+  const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    fetchProducts().then((data) => setProducts({ data, isLoading: false }))
+    fetchProducts().then((data) => setProducts(data))
   }, [])
 
   return (
-    <div className='max-w-screen overflow-x-hidden w-screen h-screen font-main'>
-      <main className='w-full min-h-screen h-auto flex flex-col overflow-hidden'>
-        <Navbar active='products' />
-        <motion.div
-          className='max-w-screen w-screen h-auto overflow-x-hidden py-16 flex flex-col items-center gap-16'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: '100%', transition: { duration: 0.5 } }}
-        >
-          <h1 className='text-6xl font-bold'>All products</h1>
-          {products.isLoading ? <p>loading...</p> : <ProductGrid data={products.data} />}
-        </motion.div>
-      </main>
-      <Footer type='grey'></Footer>
-    </div>
+    <PageWrapper active='products'>
+      <motion.div
+        className='max-w-screen w-screen h-auto overflow-x-hidden py-16 flex flex-col items-center gap-16'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: '100%', transition: { duration: 0.5, delay: 0.2 } }}
+      >
+        <h1 className='text-6xl font-bold'>All products</h1>
+        {products.length > 0 && <ProductGrid data={products} />}
+      </motion.div>
+    </PageWrapper>
   )
 }
 

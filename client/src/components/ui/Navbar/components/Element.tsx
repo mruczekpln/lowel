@@ -1,11 +1,10 @@
 import { useAnimation, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Active } from '..'
 
 interface NavbarElementProps extends React.ComponentProps<'p'> {
   content: string
   to: string
-  active: Active
+  isActive?: boolean
 }
 
 const hrVariants = {
@@ -23,9 +22,8 @@ const hrVariants = {
   },
 }
 
-const NavbarElement = ({ content, to, active }: NavbarElementProps) => {
+const NavbarElement = ({ content, to, isActive = false }: NavbarElementProps) => {
   const isHovered = useAnimation()
-  const isActive = active === content
 
   return isActive ? (
     <a href='#' className='font-main  text-[40px] font-bold'>

@@ -1,16 +1,16 @@
 import { AnimatePresence, motion, stagger, useAnimate } from 'framer-motion'
 import React from 'react'
-import { useEffect, useMemo, useState } from 'react'
-import { SortType } from '.'
+import { useEffect, useState } from 'react'
+import { SortType } from '../../../../types/sort'
 
-type Active = keyof typeof SortType
+type ActiveSortType = keyof typeof SortType
 
 interface SortByProps extends React.ComponentProps<'div'> {
   onSort: (type: SortType) => void
 }
 
 const SortBy = ({ onSort }: SortByProps) => {
-  const [active, setActive] = useState<Active>('FEATURED')
+  const [active, setActive] = useState<ActiveSortType>('FEATURED')
 
   const [scope, animate] = useAnimate()
 

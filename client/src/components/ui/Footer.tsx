@@ -45,7 +45,7 @@ const Footer = ({ type = 'white' }: FooterProps) => {
       <div className='w-1/2 h-full border-r-2 border-black pl-16 relative'>
         <div className='flex flex-col gap-4 text-3xl font-medium pt-16'>
           <FooterElement linkTo='/about' content='about'></FooterElement>
-          <FooterElement linkTo='/tracking' content='track your order'></FooterElement>
+          <FooterElement linkTo='/products' content='all products'></FooterElement>
           <FooterElement linkTo='/' content='home'></FooterElement>
           <FooterElement linkTo='#hero' content='hero' type='small'></FooterElement>
           <FooterElement

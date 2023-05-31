@@ -1,46 +1,28 @@
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useMotionValue, motion, useMotionTemplate } from 'framer-motion'
-import useBackground from '../../../hooks/useBackground'
-
-type InputProps = React.ComponentProps<'input'>
-const Input = (props: InputProps) => {
-  const type = props.type ? props.type : 'text'
-
-  return (
-    <input
-      type={type}
-      {...props}
-      className={`${props.className} rounded-md h-full pl-4  border-accent bg-secondary placeholder:text-accent`}
-    />
-  )
-}
-
-type OrderButtonProps = React.ComponentProps<'button'>
-const OrderButton = (props: OrderButtonProps) => {
-  const [mouseMoveHandler, xPosition, yPosition] = useBackground()
-
-  return (
-    <motion.button
-      onMouseMove={mouseMoveHandler}
-      className='w-full h-32 bg-accent rounded-xl mt-8 font-title text-white text-5xl relative group'
-    >
-      <motion.div
-        className='absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 duration-300'
-        style={{
-          background: useMotionTemplate`radial-gradient(300px circle at ${xPosition}px ${yPosition}px, #D9D9D9, transparent)`,
-        }}
-      ></motion.div>
-      ORDER
-    </motion.button>
-  )
-}
+import { motion, stagger, useAnimate } from 'framer-motion'
+import { useEffect } from 'react'
+import Input from './components/Input'
+import OrderButton from './components/OrderButton'
 
 type OrderFormProps = React.ComponentProps<'div'>
 const OrderForm = (props: OrderFormProps) => {
+  const [scope, animate] = useAnimate()
+
+  useEffect(() => {
+    animate(
+      'input, select',
+      { x: [0, 4, 0] },
+      { duration: 0.5, ease: 'easeInOut', delay: stagger(0.1, { startDelay: 0.5 }) }
+    )
+  }, [])
+
   return (
     <div className='min-w-[400px] h-max'>
-      <form className='border-2 border-accent rounded-xl grid grid-cols-5 grid-rows-[repeat(5,_64px)]   gap-4 w-[400px] h-full p-4'>
+      <form
+        className='border-2 border-accent rounded-xl grid grid-cols-5 grid-rows-[repeat(5,_64px)]   gap-4 w-[400px] h-full p-4'
+        ref={scope}
+      >
         <Input placeholder='first name' className='col-span-2'></Input>
         <Input placeholder='last name' className='col-span-3'></Input>
         <Input placeholder='region / province' className='col-span-3' />
@@ -48,7 +30,7 @@ const OrderForm = (props: OrderFormProps) => {
         <Input placeholder='adress' className='col-span-full' />
         <Input placeholder='postal code' className='col-span-2' />
         <Input placeholder='number' className='col-span-3' />
-        <select
+        <motion.select
           name='shipping'
           id='shipping'
           className='col-span-full rounded-md pxr-4 appearance-none pl-4 relative background-image border-2 border-accent'
@@ -64,7 +46,7 @@ const OrderForm = (props: OrderFormProps) => {
           <option value='standard'>Standard Shipping - 4$</option>
           <option value='express'>Express Shipping - 10$</option>
           <FontAwesomeIcon icon={faArrowDown} className='absolute b-2 r-4' />
-        </select>
+        </motion.select>
       </form>
       <OrderButton />
     </div>

@@ -12,7 +12,7 @@ const CartItem = (props: CartItemProps) => {
   }, [quantity])
 
   return (
-    <div className='w-full h-40 flex justify-between'>
+    <div className='w-full h-40 flex justify-between opacity-0' id='cart-item'>
       <div className='flex gap-4 '>
         <div className='aspect-square bg-secondary h-full'></div>
         <div className='flex flex-col justify-between'>
