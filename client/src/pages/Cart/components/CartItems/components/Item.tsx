@@ -1,6 +1,8 @@
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+import deletedFromCartToast from '../../../../../components/toasts/deletedFromCart'
 
 type CartItemProps = React.ComponentProps<'div'>
 
@@ -8,7 +10,7 @@ const CartItem = (props: CartItemProps) => {
   const [quantity, setQuantity] = useState<number>(1)
 
   useEffect(() => {
-    if (quantity === 0) alert('deleted')
+    if (quantity === 0) toast.custom((t) => deletedFromCartToast(t, 'product'))
   }, [quantity])
 
   return (

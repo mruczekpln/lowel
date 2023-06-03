@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion'
+import toast from 'react-hot-toast'
+import addedToCartToast from '../../../../../components/toasts/addedToCart'
+import addedToLikedToast from '../../../../../components/toasts/addedToLiked'
 import ProductCardActions from './Actions'
 import ProductCardInfo from './Info'
 
@@ -10,6 +13,14 @@ interface ProductCardProps extends React.ComponentProps<'div'> {
 }
 
 const ProductCard = (props: ProductCardProps) => {
+  const onCartAdd = () => {
+    toast.custom((t) => addedToCartToast(t, props.title))
+  }
+
+  const onLike = () => {
+    toast.custom((t) => addedToLikedToast(t, props.title))
+  }
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -24,7 +35,7 @@ const ProductCard = (props: ProductCardProps) => {
         </div>
       </div>
       <ProductCardInfo {...props} />
-      <ProductCardActions />
+      <ProductCardActions actions={{ addedToCart: onCartAdd, liked: onLike }} />
     </motion.main>
   )
 }

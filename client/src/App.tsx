@@ -6,6 +6,7 @@ import CartPage from './pages/Cart'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { ToastBar, Toaster } from 'react-hot-toast'
 
 library.add(faHeart)
 
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-  return <RouterProvider router={router}></RouterProvider>
+  return (
+    <>
+      <Toaster></Toaster>
+      <RouterProvider router={router}></RouterProvider>
+    </>
+  )
 }
 
 export default App
