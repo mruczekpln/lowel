@@ -7,6 +7,7 @@ interface ProductCardActionsProps extends React.ComponentProps<'div'> {
     addedToCart: () => void
     liked: () => void
   }
+  isLiked: boolean
 }
 
 const ProductCardActions = (props: ProductCardActionsProps) => {
@@ -26,7 +27,7 @@ const ProductCardActions = (props: ProductCardActionsProps) => {
       >
         <FontAwesomeIcon
           icon={faHeart}
-          color='white'
+          color={props.isLiked ? 'red' : 'white'}
           size='2x'
           className='group-hover/heart:scale-110 duration-200'
         />

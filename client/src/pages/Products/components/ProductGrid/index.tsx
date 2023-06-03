@@ -40,6 +40,7 @@ const ProductGrid = ({ data }: ProductGridProps) => {
         {sortedProducts.data.map((item) => (
           <ProductCard
             key={item.id}
+            itemId={item.id}
             title={item.name}
             description={item.desc}
             price={item.price}

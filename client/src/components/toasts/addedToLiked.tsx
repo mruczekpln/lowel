@@ -10,7 +10,7 @@ const addedToLikedToast = (t: any, title: string) => {
     flex items-center font-main max-w-lg gap-4 bg-secondary p-4 rounded-xl`}
     >
       <p className='text-xl w-max'>
-        added <b>{title}</b> to favorite!
+        added <b>{title}</b> to favorites!
       </p>
       <button
         onClick={() => {

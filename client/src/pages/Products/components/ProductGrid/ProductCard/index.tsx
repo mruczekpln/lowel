@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import addedToCartToast from '../../../../../components/toasts/addedToCart'
 import addedToLikedToast from '../../../../../components/toasts/addedToLiked'
+import { InCartItem, LocalStorageKeys } from '../../../../../types/localStorage'
+import { addToCart, addToLiked, isAlreadyLiked } from '../../../../../utils/localStorage'
 import ProductCardActions from './Actions'
 import ProductCardInfo from './Info'
 
 interface ProductCardProps extends React.ComponentProps<'div'> {
+  itemId: number
   title: string
   description: string
   price: number
@@ -13,11 +17,19 @@ interface ProductCardProps extends React.ComponentProps<'div'> {
 }
 
 const ProductCard = (props: ProductCardProps) => {
+  const [liked, setLiked] = useState<boolean>(isAlreadyLiked(props.itemId))
+
   const onCartAdd = () => {
+    addToCart(props.itemId)
+
     toast.custom((t) => addedToCartToast(t, props.title))
   }
 
   const onLike = () => {
+    addToLiked(props.itemId)
+
+    setLiked((prev) => !prev)
+
     toast.custom((t) => addedToLikedToast(t, props.title))
   }
 
@@ -35,7 +47,7 @@ const ProductCard = (props: ProductCardProps) => {
         </div>
       </div>
       <ProductCardInfo {...props} />
-      <ProductCardActions actions={{ addedToCart: onCartAdd, liked: onLike }} />
+      <ProductCardActions actions={{ addedToCart: onCartAdd, liked: onLike }} isLiked={liked} />
     </motion.main>
   )
 }
