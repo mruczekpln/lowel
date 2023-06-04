@@ -1,12 +1,17 @@
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion, stagger, useAnimate } from 'framer-motion'
+import React from 'react'
 import { useEffect } from 'react'
+import { ShippingType } from '..'
 import Input from './components/Input'
 import OrderButton from './components/OrderButton'
 
-type OrderFormProps = React.ComponentProps<'div'>
-const OrderForm = (props: OrderFormProps) => {
+interface OrderFormProps extends React.ComponentProps<'div'> {
+  updateShippingType: (type: ShippingType) => void
+}
+
+const OrderForm = ({ updateShippingType }: OrderFormProps) => {
   const [scope, animate] = useAnimate()
 
   useEffect(() => {
@@ -41,8 +46,8 @@ const OrderForm = (props: OrderFormProps) => {
             backgroundPosition: 'right 1rem bottom 50%',
           }}
           defaultValue={1}
+          onChange={(event: any) => updateShippingType(event.target.value)}
         >
-          <option value='default'>shipping type</option>
           <option value='standard'>Standard Shipping - 4$</option>
           <option value='express'>Express Shipping - 10$</option>
           <FontAwesomeIcon icon={faArrowDown} className='absolute b-2 r-4' />
@@ -53,4 +58,4 @@ const OrderForm = (props: OrderFormProps) => {
   )
 }
 
-export default OrderForm
+export default React.memo(OrderForm)
