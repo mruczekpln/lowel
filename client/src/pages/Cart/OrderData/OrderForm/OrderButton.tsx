@@ -1,5 +1,5 @@
 import { motion, useMotionTemplate } from 'framer-motion'
-import useElementBackground from '../../../../../../hooks/useElementBackground'
+import useElementBackground from '../../../../hooks/useElementBackground'
 
 type OrderButtonProps = React.ComponentProps<'button'>
 const OrderButton = (props: OrderButtonProps) => {
@@ -8,6 +8,7 @@ const OrderButton = (props: OrderButtonProps) => {
   return (
     <motion.button
       onMouseMove={(e) => mouseMoveHandler(e)}
+      type='submit'
       className='w-full h-32 bg-accent rounded-xl mt-8 font-title text-white text-5xl relative group'
     >
       <motion.div

@@ -2,7 +2,7 @@ import { AnimatePresence, motion, stagger, useAnimate } from 'framer-motion'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { ProductWithQuantity } from '..'
-import CartItem from './components/Item'
+import CartItem from './Item'
 
 interface CartItemsProps extends React.ComponentProps<'div'> {
   items: ProductWithQuantity[]

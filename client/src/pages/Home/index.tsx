@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion'
-import Footer from '../../components/ui/Footer'
-import Navbar from '../../components/ui/Navbar'
-import ShopNowButton from './components/ShopNowButton'
+import ShopNowButton from './ShopNowButton'
 import { useNavigate } from 'react-router-dom'
 import PageWrapper from '../../components/layout/PageWrapper'
 

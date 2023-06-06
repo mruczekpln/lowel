@@ -1,11 +1,10 @@
+import { icon } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AnimatePresence, motion, useAnimate } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimate } from 'framer-motion'
 import toast from 'react-hot-toast'
-import { ProductWithQuantity } from '../..'
-import deletedFromCartToast from '../../../../../../components/toasts/deletedFromCart'
-import { updateQuantity } from '../../../../../../utils/localStorage'
+import { ProductWithQuantity } from '..'
+import { updateQuantity } from '../../../../utils/localStorage'
 
 interface CartItemProps extends React.ComponentProps<'div'> {
   data: ProductWithQuantity
@@ -27,7 +26,7 @@ const CartItem = ({
     updateQuantity(id, 'decrement')
 
     if (quantity === 1) {
-      toast.custom((t) => deletedFromCartToast(t, 'product'))
+      setTimeout(toast(`deleted ${name} from your cart.`, { icon: '🗑️' }), 500)
     }
 
     refreshItems()

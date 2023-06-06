@@ -1,6 +1,6 @@
 import PageWrapper from '../../components/layout/PageWrapper'
 import { motion } from 'framer-motion'
-import OrderData from './components/OrderData'
+import OrderData from './OrderData'
 
 const CartPage = () => {
   return (

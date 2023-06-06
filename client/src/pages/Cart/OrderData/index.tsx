@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
-import { InCartItem } from '../../../../types/localStorage'
-import { getCartItems } from '../../../../utils/localStorage'
-import { Product } from '../../../Products'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+import type { InCartItem } from '../../../types/localStorage'
+import { clearCart, getCartItems } from '../../../utils/localStorage'
+import type { Product } from '../../Products'
 import CartItems from './CartItems'
-import OrderForm from './OrderForm'
+import OrderForm, { FormValues } from './OrderForm'
 import Summary from './Summary'
 
 export type ShippingType = 'standard' | 'express'
@@ -41,6 +42,32 @@ const OrderData = () => {
   const [items, setItems] = useState<ProductWithQuantity[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [shippingType, setShippingType] = useState<ShippingType>('standard')
+
+  const submitToast = ({ firstName, lastName, shippingType }: FormValues) => {
+    if (items.length === 0) {
+      toast.error('you must put something in your cart first!')
+      return false
+    }
+
+    const submitMessage = `thanks for your order! 🔥
+    \n
+    Order details!
+    for: ${firstName ? firstName : '?'} ${lastName} by ${shippingType} 
+    products: ${items.map((item) => item.name)} 
+    total cost: ${items.reduce(
+      (total, curr) => (total += curr.discountedPrice || curr.price * curr.quantity),
+      0
+    )}$ + shipping ${shippingType === 'standard' ? 4 : 10}$
+    `
+    console.log(submitMessage)
+
+    toast(submitMessage, { position: 'bottom-right', duration: 10000 })
+
+    clearCart()
+    refreshItems()
+    return true
+  }
+  console.log(submitToast)
 
   const updateShippingType = (type: ShippingType) => {
     console.log('update shipping type')
@@ -86,7 +113,7 @@ const OrderData = () => {
       <div className='flex flex-col gap-4 h-max'>
         <Summary items={items} shippingType={shippingType} />
         <hr className='border-secondary border-t-2 w-full' />
-        <OrderForm updateShippingType={updateShippingType} />
+        <OrderForm submitToast={submitToast} updateShippingType={updateShippingType} />
       </div>
     </section>
   )

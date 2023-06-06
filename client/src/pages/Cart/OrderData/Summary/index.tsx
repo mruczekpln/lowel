@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import { ProductWithQuantity, ShippingType } from '..'
-import ProductCostField from './components/ProductCostField'
+import SummaryRow from './Row'
 
 interface SummaryProps extends React.ComponentProps<'div'> {
   items: ProductWithQuantity[]
@@ -48,7 +48,7 @@ const Summary = ({ items, shippingType }: SummaryProps) => {
       {items && (
         <AnimatePresence>
           {summaryData.data.map((item, index) => (
-            <ProductCostField data={item} key={index} />
+            <SummaryRow data={item} key={index} />
           ))}
         </AnimatePresence>
       )}

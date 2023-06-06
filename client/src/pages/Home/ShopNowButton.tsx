@@ -1,6 +1,5 @@
-import { useMotionValue, motion, useMotionTemplate } from 'framer-motion'
-import { MouseEvent } from 'react'
-import useElementBackground from '../../../hooks/useElementBackground'
+import { motion, useMotionTemplate } from 'framer-motion'
+import useElementBackground from '../../hooks/useElementBackground'
 
 type ShopNowButtonProps = React.ComponentProps<'button'>
 

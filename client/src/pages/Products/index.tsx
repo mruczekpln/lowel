@@ -1,7 +1,7 @@
-import ProductGrid from './components/ProductGrid'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import PageWrapper from '../../components/layout/PageWrapper'
+import ProductGrid from './ProductGrid'
 
 export interface Product {
   id: number

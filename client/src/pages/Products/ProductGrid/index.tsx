@@ -1,8 +1,8 @@
 import { stagger, useAnimate } from 'framer-motion'
 import { Reducer, useEffect, useReducer } from 'react'
-import { Product } from '../..'
-import { sortingReducer } from '../../../../reducers/sortingReducer'
-import { SortAction, SortType } from '../../../../types/sort'
+import { Product } from '..'
+import { sortingReducer } from '../../../reducers/sortingReducer'
+import type { SortAction, SortType } from '../../../types/sort'
 import ProductCard from './ProductCard'
 import SortBy from './SortBy'
 

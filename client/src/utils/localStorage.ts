@@ -57,3 +57,7 @@ export const addToLiked = (id: number) => {
 
   localStorage.setItem(LocalStorageKeys.LIKED, JSON.stringify(parsedState))
 }
+
+export const clearCart = () => {
+  localStorage.removeItem('in_cart')
+}
