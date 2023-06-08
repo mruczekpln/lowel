@@ -1,13 +1,12 @@
-import { icon } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { motion, useAnimate } from 'framer-motion'
+import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
-import { ProductWithQuantity } from '..'
-import { updateQuantity } from '../../../../utils/localStorage'
+import { updateQuantity } from '../../../../api/localStorage'
+import { Item } from '../../../../types'
 
 interface CartItemProps extends React.ComponentProps<'div'> {
-  data: ProductWithQuantity
+  data: Item
   refreshItems: () => void
 }
 
@@ -15,8 +14,6 @@ const CartItem = ({
   data: { id, name, price, discountedPrice, quantity },
   refreshItems,
 }: CartItemProps) => {
-  const [scope, animate] = useAnimate()
-
   const onQuantityIncrement = () => {
     updateQuantity(id, 'increment')
     refreshItems()
@@ -39,7 +36,6 @@ const CartItem = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.3 } }}
       id='cart-item'
-      ref={scope}
     >
       <div className='flex gap-4 '>
         <div className='aspect-square bg-secondary h-full'></div>

@@ -1,5 +1,4 @@
-import { Product } from '../pages/Products'
-import { SortAction, SortType } from '../types/sort'
+import { Product, SortAction, SortType } from '../types'
 
 export function sortingReducer(state: { data: Product[] }, action: SortAction) {
   console.log(action, state)

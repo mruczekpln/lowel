@@ -1,4 +1,4 @@
-import { InCartItem, LocalStorageKeys } from '../types/localStorage'
+import { InCartItem, LocalStorageKeys } from '../types'
 
 const getParsedState = (type: LocalStorageKeys) => {
   const rawState: string = localStorage.getItem(type) || '[]'

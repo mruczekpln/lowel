@@ -1,11 +1,11 @@
-import { AnimatePresence, motion, stagger, useAnimate } from 'framer-motion'
+import { motion, stagger, useAnimate } from 'framer-motion'
 import React from 'react'
-import { useEffect, useState } from 'react'
-import { ProductWithQuantity } from '..'
+import { useEffect } from 'react'
+import { Item } from '../../../../types'
 import CartItem from './Item'
 
 interface CartItemsProps extends React.ComponentProps<'div'> {
-  items: ProductWithQuantity[]
+  items: Item[]
   refreshItems: () => void
 }
 

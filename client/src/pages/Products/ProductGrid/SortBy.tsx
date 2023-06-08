@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, stagger, useAnimate } from 'framer-motion'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { SortType } from '../../../types/sort'
+import { SortType } from '../../../types'
 
 type ActiveSortType = keyof typeof SortType
 

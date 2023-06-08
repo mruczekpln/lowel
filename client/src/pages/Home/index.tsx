@@ -12,7 +12,7 @@ const HomePage = () => {
   }
 
   return (
-    <PageWrapper active='home'>
+    <PageWrapper>
       <section className='bg-secondary grid h-full min-h-[calc(100vh_-_128px)] place-items-center z-0'>
         <motion.div
           initial={{ opacity: 0 }}

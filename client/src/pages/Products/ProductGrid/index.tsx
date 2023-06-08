@@ -1,8 +1,7 @@
 import { stagger, useAnimate } from 'framer-motion'
 import { Reducer, useEffect, useReducer } from 'react'
-import { Product } from '..'
 import { sortingReducer } from '../../../reducers/sortingReducer'
-import type { SortAction, SortType } from '../../../types/sort'
+import { Product, SortAction, SortType } from '../../../types'
 import ProductCard from './ProductCard'
 import SortBy from './SortBy'
 
@@ -21,10 +20,6 @@ const ProductGrid = ({ data }: ProductGridProps) => {
   useEffect(() => {
     animate('main', { opacity: 1 }, { delay: stagger(0.15, { startDelay: 0.3 }) })
   }, [])
-
-  useEffect(() => {
-    console.log('sorted', sortedProducts)
-  }, [sortedProducts])
 
   const onSort = (type: SortType) => {
     dispatch({ type })

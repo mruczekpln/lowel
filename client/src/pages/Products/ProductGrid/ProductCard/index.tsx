@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { addToCart, addToLiked, isAlreadyLiked } from '../../../../utils/localStorage'
+import { addToCart, addToLiked, isAlreadyLiked } from '../../../../api/localStorage'
 import ProductCardActions from './Actions'
 import ProductCardInfo from './Info'
 

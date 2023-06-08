@@ -9,8 +9,6 @@ interface FooterElementProps extends React.ComponentProps<'p'> {
 }
 
 const FooterElement = ({ content, linkTo, type = 'large' }: FooterElementProps) => {
-  // const className = type === 'large' ? 'font-medium' : 'text-lg font-normal'
-
   return type === 'large' ? (
     <Link
       to={linkTo}
@@ -26,11 +24,6 @@ const FooterElement = ({ content, linkTo, type = 'large' }: FooterElementProps) 
       {content}
     </a>
   )
-  // return (
-  //   <a href={linkTo} className={className}>
-  //     {content}
-  //   </a>
-  // )
 }
 
 interface FooterProps extends React.ComponentProps<'footer'> {

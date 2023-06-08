@@ -1,5 +1,3 @@
-import Navbar from '../../components/ui/Navbar'
-import Footer from '../../components/ui/Footer'
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import { useRef, MouseEvent } from 'react'
 import PageWrapper from '../../components/layout/PageWrapper'
@@ -23,7 +21,7 @@ const AboutPage = () => {
   }
 
   return (
-    <PageWrapper active='about'>
+    <PageWrapper>
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: '100%', transition: { duration: 0.5, delay: 0.2 } }}

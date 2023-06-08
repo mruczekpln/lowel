@@ -1,15 +1,13 @@
 import Footer from '../ui/Footer'
-import Navbar, { Active } from '../ui/Navbar'
+import Navbar from '../ui/Navbar'
 
-interface PageWrapperProps extends React.ComponentProps<'div'> {
-  active: Active
-}
+type PageWrapperProps = React.ComponentProps<'div'>
 
-const PageWrapper = ({ children, active }: PageWrapperProps) => {
+const PageWrapper = ({ children }: PageWrapperProps) => {
   return (
     <div className='h-auto font-main overflow-x-hidden'>
       <main className='flex flex-col min-h-screen h-auto w-full'>
-        <Navbar active={active}></Navbar>
+        <Navbar></Navbar>
         {children}
       </main>
       <Footer />

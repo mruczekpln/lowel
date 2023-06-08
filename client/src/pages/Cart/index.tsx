@@ -4,7 +4,7 @@ import OrderData from './OrderData'
 
 const CartPage = () => {
   return (
-    <PageWrapper active='cart'>
+    <PageWrapper>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: '100%', transition: { duration: 1, delay: 0.2 } }}

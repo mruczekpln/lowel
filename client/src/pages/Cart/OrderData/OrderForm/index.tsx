@@ -5,24 +5,13 @@ import React, { ChangeEvent } from 'react'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { ShippingType } from '..'
+import { FormValues, ShippingType } from '../../../../types'
 import Input from './Input'
 import OrderButton from './OrderButton'
 
 interface OrderFormProps extends React.ComponentProps<'div'> {
   updateShippingType: (type: ShippingType) => void
   submitToast: (data: FormValues) => boolean
-}
-
-export interface FormValues {
-  firstName: string
-  lastName: string
-  regionProvince: string
-  country: string
-  adress: string
-  postalCode: string
-  phoneNumber: number
-  shippingType: ShippingType
 }
 
 const OrderForm = ({ updateShippingType, submitToast }: OrderFormProps) => {
