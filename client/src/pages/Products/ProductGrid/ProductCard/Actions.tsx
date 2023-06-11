@@ -1,6 +1,5 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import toast from 'react-hot-toast'
 
 interface ProductCardActionsProps extends React.ComponentProps<'div'> {
   actions: {
@@ -12,24 +11,24 @@ interface ProductCardActionsProps extends React.ComponentProps<'div'> {
 
 const ProductCardActions = (props: ProductCardActionsProps) => {
   return (
-    <div className='cursor-pointer flex h-16 bg-gradient-to-r from-secondary to-white items-center justify-between '>
+    <div className='flex h-16 cursor-pointer items-center justify-between bg-gradient-to-r from-secondary to-white '>
       <div
-        className='group/addcart w-full h-16 flex items-center'
+        className='group/addcart flex h-16 w-full items-center'
         onClick={props.actions.addedToCart}
       >
-        <p className='text-xl pl-6 leading-none font-bold group-hover/addcart:pl-8 duration-300 w-full'>
+        <p className='w-full pl-6 text-xl font-bold leading-none duration-300 group-hover/addcart:pl-8'>
           add to cart
         </p>
       </div>
       <div
-        className='h-full w-16 bg-accent flex items-center justify-center group/heart'
+        className='group/heart flex h-full w-16 items-center justify-center bg-accent'
         onClick={props.actions.liked}
       >
         <FontAwesomeIcon
           icon={faHeart}
           color={props.isLiked ? 'red' : 'white'}
           size='2x'
-          className='group-hover/heart:scale-110 duration-200'
+          className='duration-200 group-hover/heart:scale-110'
         />
       </div>
     </div>
