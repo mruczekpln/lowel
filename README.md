@@ -1,12 +1,16 @@
 # lowel
-my first front-end e-commerce project
+### my first front-end e-commerce project
 
-build with
+one of my bigger projects. wanted to focus more on desing and animations trying out framer motion. made basic e-commerce store functionality based on local storage. live link in the links section!
+
+build with\
 react
-typescript
+- react-router-dom
+- react-hook-form
+- framer-motion
+- react-hot-toast
 
-libs:
-react-router-dom
-react-hook-form
-framer-motion
-react-hot-toast
+typescript\
+\
+vite
+
