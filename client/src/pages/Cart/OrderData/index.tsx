@@ -48,7 +48,7 @@ const OrderData = () => {
   }
 
   return (
-    <section className='flex gap-8 w-[1200px] h-max'>
+    <section className='flex h-max w-full max-w-[1200px] gap-8 px-10 xl:flex-col'>
       <AnimatePresence mode='wait'>
         {isLoading ? (
           <motion.div
@@ -56,7 +56,7 @@ const OrderData = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className='flex flex-col gap-8 w-full h-max text-4xl'
+            className='flex h-max w-full flex-col gap-8 text-4xl'
             key={`${isLoading}`}
           >
             loading...
@@ -65,10 +65,12 @@ const OrderData = () => {
           <CartItems items={state.cartItems} refreshItems={refreshItems} key={`${isLoading}`} />
         )}
       </AnimatePresence>
-      <div className='w-1 border-l-2 border-secondary'></div>
-      <div className='flex flex-col gap-4 h-max'>
+      <div className='w-1 border-l-2 border-secondary xl:hidden'></div>
+      <hr className='hidden w-full border-t-2  border-secondary xl:block' />
+      <div className='flex h-max flex-col gap-4 xl:flex-row xl:gap-8 lg:flex-col'>
         <Summary state={state} />
-        <hr className='border-secondary border-t-2 w-full' />
+        <hr className='w-full border-t-2 border-secondary xl:hidden lg:block' />
+        <div className='hidden w-1 border-l-2 border-secondary xl:block lg:hidden'></div>
         <OrderForm submitToast={submitToast} updateShippingType={updateShippingType} />
       </div>
     </section>

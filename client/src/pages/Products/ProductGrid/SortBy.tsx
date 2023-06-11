@@ -24,9 +24,9 @@ const SortBy = ({ onSort }: SortByProps) => {
 
   return (
     <AnimatePresence>
-      <motion.div className='flex gap-4 text-2xl col-span-full relative'>
+      <motion.div className='relative col-span-full flex gap-4 px-4 text-2xl lg:gap-2 lg:text-xl md:text-lg sm:text-sm mobile:text-xs'>
         <h2 className=''>sort by:</h2>
-        <div className='flex gap-8 font-bold' ref={scope}>
+        <div className='flex items-center gap-8 font-bold lg:gap-4 md:gap-3' ref={scope}>
           <motion.p
             className='relative cursor-pointer'
             onClick={() => setActive('FEATURED')}

@@ -29,3 +29,8 @@
     opacity: 1;
   }
 }
+
+html,
+body {
+  scroll-behavior: smooth;
+}

@@ -8,11 +8,11 @@ const CartAnchor = (props: CartAnchorProps) => {
   const navigate = useNavigate()
 
   return (
-    <div className='max-h-32 h-full w-32 bg-secondary border-l-2 border-black flex items-center justify-center'>
+    <div className='flex h-full max-h-32 w-32 items-center justify-center border-l-2 border-black bg-secondary md:w-20'>
       <FontAwesomeIcon
+        fixedWidth
         icon={faCartShopping}
-        size='3x'
-        className='cursor-pointer'
+        className='aspect-square scale-[3] cursor-pointer md:scale-150'
         onClick={() => navigate('/cart')}
       />
     </div>

@@ -32,11 +32,11 @@ const ProductCard = (props: ProductCardProps) => {
   return (
     <motion.main
       initial={{ opacity: 0 }}
-      className='min-w-[400px] w-full min-h-[650px] flex flex-col gap-8 font-main'
+      className='flex min-h-[650px] w-full max-w-[400px] flex-col gap-8 place-self-center font-main sm:h-auto sm:min-h-[400px]'
     >
-      <div className='w-full h-[400px] bg-secondary group relative'>
+      <div className='group relative aspect-square h-[400px] bg-secondary sm:h-[300px] sm:w-[300px]'>
         <div
-          className='text-l text-accent rounded-xl opacity-0 group-hover:opacity-100 duration-200 cursor-pointer absolute left-3 bottom-2'
+          className='text-l absolute bottom-2 left-3 cursor-pointer rounded-xl text-accent opacity-0 duration-200 group-hover:opacity-100'
           onClick={(e) => alert(e.target)}
         >
           {props.description}

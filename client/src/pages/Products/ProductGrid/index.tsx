@@ -29,7 +29,7 @@ const ProductGrid = ({ data }: ProductGridProps) => {
     <>
       <SortBy onSort={onSort} />
       <section
-        className='grid max-w-[1400px] h-auto grid-cols-[repeat(auto-fill,_400px)] gap-16'
+        className='grid h-auto w-[1400px] grid-cols-[repeat(auto-fill,_400px)] place-content-center gap-16 2xl:w-full sm:grid-cols-[300px] sm:px-10'
         ref={scope}
       >
         {sortedProducts.data.map((item) => (

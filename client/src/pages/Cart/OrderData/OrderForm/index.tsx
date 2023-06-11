@@ -4,7 +4,6 @@ import { motion, stagger, useAnimate } from 'framer-motion'
 import React, { ChangeEvent } from 'react'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import { FormValues, ShippingType } from '../../../../types'
 import Input from './Input'
 import OrderButton from './OrderButton'
@@ -27,7 +26,7 @@ const OrderForm = ({ updateShippingType, submitToast }: OrderFormProps) => {
 
   const {
     register,
-    formState: { errors, isSubmitted },
+    formState: { errors },
     handleSubmit,
     reset,
   } = useForm<FormValues>()
@@ -38,9 +37,12 @@ const OrderForm = ({ updateShippingType, submitToast }: OrderFormProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='min-w-[400px] h-max'>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className='h-max w-max min-w-[400px] lg:self-center sm:w-full sm:min-w-[300px]'
+    >
       <div
-        className='border-2 border-accent rounded-xl grid grid-cols-5 grid-rows-[repeat(4,64px)_12px_64px] gap-5 w-[400px] h-full p-5 relative'
+        className='relative grid h-full w-[400px] grid-cols-5 grid-rows-[repeat(4,64px)_12px_64px] gap-5 rounded-xl border-2 border-accent p-5 sm:w-full'
         ref={scope}
       >
         {/* {errors && isSubmitted && (
@@ -120,7 +122,7 @@ const OrderForm = ({ updateShippingType, submitToast }: OrderFormProps) => {
         </div>
         <motion.select
           id='shipping'
-          className='col-span-full rounded-md pxr-4 appearance-none pl-4 relative background-image border-2 border-accent'
+          className='pxr-4 background-image relative col-span-full appearance-none rounded-md border-2 border-accent pl-4'
           style={{
             backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>')`,
             backgroundRepeat: 'no-repeat',
@@ -135,7 +137,7 @@ const OrderForm = ({ updateShippingType, submitToast }: OrderFormProps) => {
         >
           <option value='standard'>Standard Shipping - 4$</option>
           <option value='express'>Express Shipping - 10$</option>
-          <FontAwesomeIcon icon={faArrowDown} className='absolute b-2 r-4' />
+          <FontAwesomeIcon icon={faArrowDown} className='b-2 r-4 absolute' />
         </motion.select>
       </div>
       {/* <input type='submit' value='vac' /> */}

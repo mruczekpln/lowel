@@ -26,7 +26,7 @@ const NavbarElement = ({ content, to, isActive = false }: NavbarElementProps) =>
   const isHovered = useAnimation()
 
   return isActive ? (
-    <a href='#' className='font-main  text-[40px] font-bold'>
+    <a href='#' className={`font-main  text-[40px] font-bold lg:text-3xl md:text-2xl sm:hidden`}>
       {content}
     </a>
   ) : (
@@ -35,11 +35,11 @@ const NavbarElement = ({ content, to, isActive = false }: NavbarElementProps) =>
         onHoverStart={() => isHovered.start('hover')}
         onHoverEnd={() => isHovered.start('idle')}
         onTapStart={() => isHovered.start('tap')}
-        className='font-main text-[40px]  relative cursor-pointer flex flex-col items-center'
+        className={`relative flex cursor-pointer flex-col items-center font-main text-[40px] lg:text-3xl md:text-2xl sm:hidden`}
       >
         {content}
         <motion.hr
-          className='border-black border-b-2 h-0 absolute bottom-0'
+          className='absolute bottom-0 h-0 border-b-2 border-black'
           initial='idle'
           variants={hrVariants}
           animate={isHovered}

@@ -9,11 +9,11 @@ const ProductsPage = () => {
   return (
     <PageWrapper>
       <motion.div
-        className='max-w-screen w-screen h-auto overflow-x-hidden py-16 flex flex-col items-center gap-16'
+        className='max-w-screen flex h-auto w-screen flex-col items-center gap-16 overflow-x-hidden py-16 md:gap-8 md:py-8'
         initial={{ opacity: 0 }}
         animate={{ opacity: '100%', transition: { duration: 0.5, delay: 0.2 } }}
       >
-        <h1 className='text-6xl font-bold'>All products</h1>
+        <h1 className='text-6xl font-bold md:text-5xl'>All products</h1>
         {productList.length > 0 && <ProductGrid data={productList} />}
       </motion.div>
     </PageWrapper>

@@ -1,7 +1,6 @@
-import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ErrorOption, Path, RegisterOptions, UseFormRegister } from 'react-hook-form'
-import { FormValues } from '.'
+import { FormValues } from '../../../../types'
 
 interface InputProps extends React.ComponentProps<'input'> {
   label: Path<FormValues>
@@ -36,12 +35,12 @@ const Input = (props: InputProps) => {
 
   return (
     <>
-      <div className={`${props.className} h-full border-accent  relative`}>
+      <div className={`${props.className} relative h-full  border-accent`}>
         <input
           {...props.register(props.label, { ...requiredProps })}
           type={type}
           placeholder={props.placeholder}
-          className='h-full w-full rounded-md pl-4 bg-secondary placeholder:text-accent'
+          className='h-full w-full rounded-md bg-secondary pl-4 placeholder:text-accent sm:pl-3 sm:placeholder:text-sm'
           onChange={(e) => {
             props.pattern && console.log(e.target.value, e.target.value.match(props.pattern))
           }}
@@ -52,7 +51,7 @@ const Input = (props: InputProps) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.3 } }}
-              className='absolute -bottom-[19px] left-1 text-[12px] font-bold w-max'
+              className='absolute -bottom-[19px] left-1 w-max text-[12px] font-bold sm:text-[11px]'
             >
               {props.errorOption.message}
             </motion.p>

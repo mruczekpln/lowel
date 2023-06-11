@@ -1,24 +1,14 @@
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
-import { useRef, MouseEvent } from 'react'
+import { useRef } from 'react'
 import PageWrapper from '../../components/layout/PageWrapper'
+import useElementBackground from '../../hooks/useElementBackground'
 
 const AboutPage = () => {
-  const xPosition = useMotionValue(0)
-  const yPosition = useMotionValue(0)
   const opacity = useMotionValue(0)
 
   const dragConstraintsRef = useRef<HTMLDivElement>(null)
 
-  const mouseMoveHandler = (e: MouseEvent<HTMLElement>) => {
-    const { clientX, clientY } = e
-    const { left, top } = e.currentTarget.getBoundingClientRect()
-
-    const x = clientX - left
-    const y = clientY - top
-
-    xPosition.set(x)
-    yPosition.set(y)
-  }
+  const [mouseMoveHandler, xPosition, yPosition] = useElementBackground()
 
   return (
     <PageWrapper>
@@ -28,7 +18,7 @@ const AboutPage = () => {
         onMouseMove={mouseMoveHandler}
         onHoverStart={() => opacity.set(20)}
         onHoverEnd={() => opacity.set(0)}
-        className='h-[calc(100vh_-_128px)] w-full grid place-items-center bg-white overflow-hidden relative '
+        className='relative grid h-[calc(100vh_-_128px)] w-full place-items-center overflow-hidden bg-white from-secondary to-transparent xl:bg-gradient-to-t lg:py-32 sm:h-auto'
         ref={dragConstraintsRef}
       >
         <motion.div
@@ -42,24 +32,30 @@ const AboutPage = () => {
           }}
           dragTransition={{ timeConstant: 1000 }}
           dragConstraints={dragConstraintsRef}
-          className='h-max w-max flex flex-col items-center z-50 relative'
+          className='relative z-30 flex h-max w-max flex-col items-center text-8xl xl:text-[8vw] sm:w-1/2 sm:text-center sm:text-[15vw] sm:leading-normal'
         >
-          <h1 className='text-8xl'>
-            <span className='text-9xl font-title leading-none after:bg-gradient-to-b from-secondary to-white relative after:h-48 after:w-48 after:left-16 after:top-4 after:absolute after:-z-10 after:rounded-full'>
-              LOWEL
-            </span>
-            <span className='text-9xl pr-8'>™</span>With The Best
-          </h1>
-          <h1 className='text-8xl'>
+          <div className='flex sm:block'>
+            <h1 className='flex'>
+              <span className='relative from-secondary to-white font-title text-9xl leading-none after:absolute after:-top-8 after:left-16 after:-z-10 after:h-48 after:w-48 after:rounded-full after:bg-gradient-to-b xl:text-[8vw] xl:after:opacity-0 sm:text-[20vw]'>
+                LOWEL
+              </span>
+              <span className='pr-8 text-8xl xl:text-[8vw] md:pr-4 sm:text-[15vw]'>™</span>
+            </h1>
+            <h1>With The Best</h1>
+          </div>
+          <h1 className=''>
             Quality In The{' '}
-            <span className='underline underline-offset-[16px] leading-none'>Game</span>.
+            <span className='leading-none underline underline-offset-[16px] xl:underline-offset-[2vw]'>
+              Game
+            </span>
+            .
           </h1>
-          <p className='absolute -bottom-8 text-white font-medium text-3xl font-main left-0'>
+          <p className='absolute -bottom-8 left-0 font-main text-3xl font-medium text-white xl:opacity-0'>
             drag me
           </p>
         </motion.div>
         <motion.div
-          className='absolute inset-0 rounded-xl opacity-0 0 duration-300 z-10'
+          className='0 absolute inset-0 z-10 rounded-xl opacity-0 duration-300'
           style={{
             background: useMotionTemplate`radial-gradient(800px circle at ${xPosition}px ${yPosition}px, #1E1E1E, transparent)`,
             opacity: useMotionTemplate`${opacity}%`,

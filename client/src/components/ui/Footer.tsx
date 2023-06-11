@@ -12,14 +12,14 @@ const FooterElement = ({ content, linkTo, type = 'large' }: FooterElementProps) 
   return type === 'large' ? (
     <Link
       to={linkTo}
-      className='font-medium hover:left-4 left-0 relative duration-200 delay-100 transition-[left]'
+      className='relative left-0 font-medium transition-[left] delay-100 duration-200 hover:left-4'
     >
       {content}
     </Link>
   ) : (
     <a
       href={linkTo}
-      className='text-lg font-normal duration-100 delay-50 transition-[left] left-0 hover:left-2 relative'
+      className='delay-50 relative left-0 text-lg font-normal transition-[left] duration-100 hover:left-2'
     >
       {content}
     </a>
@@ -34,9 +34,11 @@ const Footer = ({ type = 'white' }: FooterProps) => {
   const backgroundCSS = type === 'white' ? 'bg-white' : 'bg-secondary'
 
   return (
-    <section className={`flex w-full h-[500px] border-t-2 border-black ${backgroundCSS}`}>
-      <div className='w-1/2 h-full border-r-2 border-black pl-16 relative'>
-        <div className='flex flex-col gap-4 text-3xl font-medium pt-16'>
+    <section
+      className={`max-w-screen flex h-[500px] w-full overflow-x-hidden border-t-2 border-black lg:h-[1000px] lg:flex-col ${backgroundCSS}`}
+    >
+      <div className='relative h-full w-full border-r-2 border-black pl-16 lg:border-0 lg:border-b-2 md:pl-8'>
+        <div className='flex flex-col gap-4 pt-16 text-3xl font-medium' id='footer-links'>
           <FooterElement linkTo='/about' content='about'></FooterElement>
           <FooterElement linkTo='/products' content='all products'></FooterElement>
           <FooterElement linkTo='/' content='home'></FooterElement>
@@ -49,8 +51,8 @@ const Footer = ({ type = 'white' }: FooterProps) => {
         </div>
         <h1 className='absolute bottom-8 font-title text-[64px] leading-none'>LOWEL</h1>
       </div>
-      <div className='w-1/2 h-full pl-16 relative'>
-        <div className='flex flex-col gap-4 w-max pt-16'>
+      <div className='relative h-full w-full pl-16 md:pl-8'>
+        <div className='flex w-max flex-col gap-4 pt-16'>
           <p className='w-[300px] text-lg'>
             Join our newsletter community and be the first to know about our exciting updates,
             events, and sales.
