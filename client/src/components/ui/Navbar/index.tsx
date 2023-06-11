@@ -1,13 +1,6 @@
 import { faBurger } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  AnimatePresence,
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useVelocity,
-} from 'framer-motion'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import CartAnchor from './components/CartAnchor'
 import NavbarElement from './components/Element'
 

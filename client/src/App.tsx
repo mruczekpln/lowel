@@ -6,7 +6,7 @@ import CartPage from './pages/Cart'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { ToastBar, Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 library.add(faHeart)
 
